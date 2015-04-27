@@ -11,7 +11,7 @@ function CreateTable($conn, $tablename, $tabledata)
 $table_users = "USERS";
 $table_trans = "TRANSACTIONS";
 $table_addresses = "ADDRESSES";
-$table_balances = "BALANCES";
+$table_balances = "ACCOUNTS";
 
 $table = "
 user_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
@@ -28,7 +28,7 @@ CreateTable($conn,$table_users, $table);
 $table="
 	transaction_id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	transaction_time TIMESTAMP,
-	transaction_sender INT,
+	transaction_sender CHAR(128),
 	transaction_target CHAR(128),
 	transaction_amount DOUBLE
 ";
@@ -45,8 +45,9 @@ CreateTable($conn,$table_addresses,$table);
 
 
 $table = "
-	user_id INT,
-	balance_amount DOUBLE
+	account_number CHAR(128),
+	account_user_id INT,
+	account_balance DOUBLE
 ";
 
 CreateTable($conn, $table_balances, $table);

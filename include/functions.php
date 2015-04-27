@@ -21,7 +21,6 @@ function register_account($mysql,  $name, $email, $phone, $address, $password)
 
         return login($email, $password, $mysql);
     }
-
     return false;
 }
 
@@ -35,10 +34,11 @@ function login($email, $password, $mysql)
     if ($stmt = $mysql->prepare("SELECT user_id, user_fullName, user_password FROM USERS WHERE user_email = ? LIMIT 1") ) {
         $stmt->bind_param('s', $email);  
         $stmt->execute();  
-        $stmt->store_result();
+        //$stmt->p();
  
         $stmt->bind_result($user_id, $fullname, $db_password);
         $stmt->fetch();
+        //$stmt->close();
         if($db_password == $p){
         	$_SESSION['user_id'] = $user_id;
         	$_SESSION['full_name'] = $fullname;
@@ -62,6 +62,56 @@ function end_session()
     session_unset();
     session_destroy();
 }
+
+
+
+function get_accounts($mysql)
+{
+    $array = [];
+    
+    if($stmt = $mysql->prepare("SELECT account_number, account_user_id, account_balance FROM ACCOUNTS WHERE account_user_id = ?") ){
+        $stmt->bind_param('s', $_SESSION['user_id']);
+        $stmt->execute();
+        $stmt->store_result();
+        
+        $stmt->bind_result($acc_num, $user_id, $acc_balance);
+        $i =0;
+        while($stmt->fetch()){
+            $array[$i]['acc_num'] = $acc_num;
+            $array[$i]['user_id'] = $user_id;
+            $array[$i]['acc_balance'] = $acc_balance;
+            $i++;
+        }
+    }
+
+    return $array;
+}
+
+function get_transactions($mysql, $account_id)
+{
+    $array = [];
+
+    return $array;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ?>
