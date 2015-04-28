@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 'On');
+
 $servername = "localhost";
 $username = "db_user";
 $password = "tW8cGnDFv3TNWCKs";

@@ -33,3 +33,43 @@
 .form_layout p label{display:table-cell; padding:8px 5px;}
 .form_layout p input{display:table-cell; width:150px; padding:8px 5px;}
 #submit { width: 100px; margin-top: 10px}
+
+.button {display:block; width:100px; background:#4E9CAF; padding:5px; text-align:center; border-radius:5px; color:white; font-weight:bold; text-decoration:none; margin-top:15px;}
+
+@charset "utf-8";
+.main{padding:0; margin:0;}
+
+
+.clear{clear:both;}
+
+/*header*/
+.header{ padding:0; margin:0 auto; width:1000px; background: #A37547}
+.header_logo{padding: 10px 30px 0px 25px; float: left;}
+.header_left{float:left; }
+.header_name{ }
+
+/* top menu */
+.navbar{ padding: 44px 0px 0px 0px; }  /*background: #BD9C7A; }*/
+.menu_nav {padding: 0; width: 800px; float: left} /*background-color: #888;}*/
+.menu_nav ul { list-style:none; margin: 0; padding: 0; }
+.menu_nav ul li { float:left; } /*margin:0; padding:0 7px 0 0; float:left; position: relative; } */
+.menu_nav ul li a { display:block; margin:0; padding:0; width: 158px; padding-top: 6px; height:20px; text-align: center; color:#fff; text-decoration:none; border-style:solid;border-width:1px;}
+.menu_nav ul li.active a, .menu_nav ul li a:hover { background:cadetblue url(images/menu_a.gif) repeat-x center; color:#fff;}
+
+.body{ padding:0; margin:0 auto; width:1000px; height:600px;}
+.main_body{padding:0; margin:10px 10px; float:left; width:800px;}
+/* left menu */
+.left_bar { padding:10px 10px; float:left; width: 160px; height:100%; background: #A37547; }
+.left_bar ul {list-style: none; margin:0; padding:0}
+.left_bar ul li {}
+.left_bar ul li a { display:block; margin:0; padding:0; width: 160px; padding-top: 6px; height:20px; text-align: center; color:#fff; text-decoration:none;}
+.left_bar ul li.active a, .left_bar ul li a:hover { background:#f00 url(images/menu_a.gif) repeat-x center; color:#fff;}
+
+.form_layout{display:table; padding:25px;}
+.form_layout p {display:table-row; padding:5px 0;}
+.form_layout p label{display:table-cell; padding:8px 5px;}
+.form_layout p input{display:table-cell; width:150px; padding:8px 5px;}
+#submit { width: 100px; margin-top: 10px}
+
+.button {display:block; width:100px; background:#4E9CAF; padding:5px; text-align:center; border-radius:5px; color:white; font-weight:bold; text-decoration:none; margin-top:15px;}
+
