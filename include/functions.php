@@ -58,7 +58,7 @@ function is_login()
 
 function end_session()
 {
-    $_SESSION = [];
+    $_SESSION = array();
     session_unset();
     session_destroy();
 }
@@ -67,7 +67,7 @@ function end_session()
 
 function get_accounts($mysql)
 {
-    $array = [];
+    $array = array();
     
     if($stmt = $mysql->prepare("SELECT account_number, account_user_id, account_balance FROM ACCOUNTS WHERE account_user_id = ?") ){
         $stmt->bind_param('s', $_SESSION['user_id']);
@@ -89,7 +89,7 @@ function get_accounts($mysql)
 
 function get_transactions($mysql, $account_id)
 {
-    $array = [];
+    $array = array();
 
     return $array;
 }
