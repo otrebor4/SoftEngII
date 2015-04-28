@@ -53,6 +53,21 @@ if(isset($_POST)){
 		}else{
 			$post_error_msg="Uncomplete form";
 		}
+	}else if($_POST['submit'] == "add_account"){
+		if(!checkdata($_POST, "account_num")){
+			$post_error_msg="Invalid account number";
+		}else if(!checkdata($_POST, "account_name")){
+			$post_error_msg="Account name must have a name";
+		}else{
+			$acc_name = $_POST['account_name'];
+			$acc_num = $_POST['account_num'];
+			if(create_account($conn, $acc_name, $acc_num)){
+				header('location: /templates/dummy.php');
+				exit();
+			}else{
+				$post_error_msg="Unable to add account";
+			}
+		}
 
 	}
 

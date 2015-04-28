@@ -1,6 +1,5 @@
 <?php 
 
-
 function start_session()
 {
 	session_start();
@@ -63,20 +62,39 @@ function end_session()
     session_destroy();
 }
 
+function create_account($mysql, $account_name, $account_number)
+{
+    $user_id = $_SESSION['user_id'];
+    if(empty($account_name) || empty($account_number) || empty($user_id))
+        return false;
+    
+    if( $stmt = $mysql->prepare("INSERT INTO ACCOUNTS (account_number, account_name, account_user_id, account_balance) 
+        VALUES (?, ?, ?, ?)")){
+        $balance = 0;
+        $stmt->bind_param('ssid', $account_number, $account_name, $user_id, $balance);
 
+        $stmt->execute();
+        $stmt->store_result();
+
+        return true;
+    }
+
+    return false;
+}
 
 function get_accounts($mysql)
 {
     $array = array();
     
-    if($stmt = $mysql->prepare("SELECT account_number, account_user_id, account_balance FROM ACCOUNTS WHERE account_user_id = ?") ){
+    if($stmt = $mysql->prepare("SELECT account_name, account_number, account_user_id, account_balance FROM ACCOUNTS WHERE account_user_id = ?") ){
         $stmt->bind_param('s', $_SESSION['user_id']);
         $stmt->execute();
         $stmt->store_result();
         
-        $stmt->bind_result($acc_num, $user_id, $acc_balance);
+        $stmt->bind_result($acc_name, $acc_num, $user_id, $acc_balance);
         $i =0;
         while($stmt->fetch()){
+            $array[$i]['acc_name']= $acc_name;
             $array[$i]['acc_num'] = $acc_num;
             $array[$i]['user_id'] = $user_id;
             $array[$i]['acc_balance'] = $acc_balance;
