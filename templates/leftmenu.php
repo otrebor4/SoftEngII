@@ -1,11 +1,9 @@
 
 <div class="left_bar">
 	<ul>
-		<!--
-		<li><a href=""> hello</a></li>
-		<li><a href=""> hello</a></li>
-		<li><a href=""> hello</a></li>
-		-->
+		<li style="height:30px; margin-top:10px; color:#fff;"> <?php echo get_fullname(); ?> </li>
+		<li style="height:30px; color:#fff; "> <?php echo get_email(); ?> </li>
+		<li></li>
 	</ul>
 
 </div>

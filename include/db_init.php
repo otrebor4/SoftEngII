@@ -21,6 +21,5 @@ if ($conn->query($sql) != TRUE) {
 }
 $conn->select_db($database);
 
-include_once "db_tables.php"
 
 ?>

@@ -1,5 +1,9 @@
 <?php 
 
+function get_fullname(){    return isset($_SESSION['full_name']) ? $_SESSION['full_name'] : "";}
+function get_email(){       return isset($_SESSION['full_name']) ? $_SESSION['email']     : "";}
+function get_userID(){      return isset($_SESSION['full_name']) ? $_SESSION['user_id']   : "";}
+
 function start_session()
 {
 	session_start();
@@ -114,11 +118,14 @@ function check_balance($mysql, $acc_num, $ammount)
     }
     echo $mysql->error;
     return false;
-
 }
 
 function send_transaction($mysql, $to, $ammount, $from)
 {
+    if($to == $from){
+        return "Error: can't perform transactoin with in the same account";
+    }
+
     if(check_balance($mysql, $from, $ammount)){
         if( transfer_ammount($mysql, $from, $to, $ammount) )
         {
@@ -164,15 +171,6 @@ function transfer_ammount($mysql, $from_id, $to_id, $ammount)
 
 function get_transactions($mysql, $account_id)
 {
-
-    /*
-    transaction_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    transaction_time TIMESTAMP,
-    transaction_sender CHAR(128),
-    transaction_target CHAR(128),
-    transaction_amount DOUBLE
-
-    */
     $array = array();
     
     if($stmt = $mysql->prepare("SELECT transaction_time, transaction_sender, transaction_target, transaction_amount FROM TRANSACTIONS WHERE transaction_sender = ? OR transaction_target = ?") ){

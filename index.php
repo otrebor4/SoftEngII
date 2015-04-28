@@ -1,17 +1,6 @@
 <?php 
 //main program
-
-//display header
-include "templates/header.php";
-
-//start main body
-echo "<div class='body'>";
-
-//left menu barr
-include "templates/leftmenu.php";
-
-//switch for aciont
-//echo is_login();
+include_once "include/load.php";
 
 
 $action = "" ;
@@ -27,21 +16,35 @@ if (is_login() ){
 	    }else if ($action == "logout"){
 	    	end_session();
 	    	start_session();
-	    	$action = "login";
+	    	header("location: templates/dummy.php");
+	    	exit();
 	    }else if (!file_exists("templates/$action.php"))
 	        $action = "accounts";
-	    include("templates/$action.php");
 	}else{
-		include("templates/accounts.php");
+		$action ="accounts";
 	}
 } else {
 	if(!empty($action)) {
 	    if( $action != "register")
 	    	$action = "login";
-	    include("templates/$action.php");
 	}else{
-    	include("templates/login.php");
+    	$action = "login";
 	}
 }
+
+//display header
+include "templates/header.php";
+
+//start main body
+echo "<div class='body'>";
+
+//left menu barr
+include "templates/leftmenu.php";
+
+include "templates/$action.php";
+
+
 echo "</div>";
+
+
 ?>
