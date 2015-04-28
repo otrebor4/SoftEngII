@@ -4,8 +4,10 @@ function checkdata($data, $key)
 	return isset($data[$key]) && !empty($data[$key]); 
 }
 
-if(isset($_POST)){
-	$post_error_msg = '';
+
+$post_error_msg = '';
+if(isset($_POST) && !empty($_POST['submit'])){
+	
 
 	//login POST listener
 	if($_POST['submit'] == "Login"){
@@ -68,7 +70,26 @@ if(isset($_POST)){
 				$post_error_msg="Unable to add account";
 			}
 		}
+	}else if($_POST['submit'] == 'send_coins'){
+		#var_dump($_POST);
 
+		if(!checkdata($_POST, 'send_to')){
+			$post_error_msg = "empty destination account";
+		}else if(!checkdata($_POST, 'send_amount')){
+			$post_error_msg = "invalid amount";
+		}else if(!checkdata($_POST, 'pay_from')){
+			$post_error_msg = "empty pay option";
+		}else{
+			$to = $_POST['send_to'];
+			$ammount = $_POST['send_amount'];
+			$pay_from = $_POST['pay_from'];
+
+			$post_error_msg = send_transaction($conn, $to, $ammount, $pay_from);
+			if( $post_error_msg == 'true'){
+				header('location: /templates/dummy.php');
+				exit();
+			}
+		}
 	}
 
 }
