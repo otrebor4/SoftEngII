@@ -44,6 +44,16 @@
             		echo "</table>";
             		$j++;
 				}
+				if($tcount == 0){
+					echo "<table width='770px' style = 'margin:0px 15px; background:rgb(178, 154, 131) ;'  >";
+					echo "<td width='150px'> No transactions.</td>";
+					echo "</table>";
+				}
+
+				echo "<table width='770px' style = 'margin:2px 15px;'  >";
+				echo "<td width='150px'></td>";
+				echo "</table>";
+
 				$i++;
 			}
 			//just draw empty table

@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', 'On');
+ini_set('display_errors', 'Off');
 
 $servername = "localhost";
 $username = "db_user";
@@ -21,6 +21,5 @@ if ($conn->query($sql) != TRUE) {
 }
 $conn->select_db($database);
 
-include_once "db_tables.php"
 
 ?>

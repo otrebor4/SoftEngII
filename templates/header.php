@@ -1,11 +1,3 @@
-<?php 
-include_once "include/db_init.php";
-include_once 'include/functions.php';
-start_session();
-include_once 'include/pre.php';
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
