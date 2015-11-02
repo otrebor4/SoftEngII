@@ -3,8 +3,8 @@ ini_set('display_errors', 'Off');
 
 $servername = "localhost";
 $username = "db_user";
-$password = "tW8cGnDFv3TNWCKs";
-$database = "db_se2";
+$password = "";
+$database = "db_se";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
